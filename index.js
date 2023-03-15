@@ -26,6 +26,16 @@ io.on("connection",(socket)=>{
         console.log(data)
         socket.broadcast.emit("receive_message",data);
    })
+
+   // Set CORS headers
+   socket.on('handshake', (callback) => {
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST',
+        'Access-Control-Allow-Headers': 'Content-Type',
+    };
+    callback(headers);
+});
 })
 
 
